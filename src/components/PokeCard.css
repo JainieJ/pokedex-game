@@ -1,0 +1,24 @@
+.PokeCard {
+  width: 20rem;
+  margin: 0 auto;
+}
+
+.PokeCard-img-container {
+  background: #eceff1;
+  margin-bottom: 1rem;
+}
+
+.PokeCard-img {
+  transition: all 0.3s linear;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.PokeCard-img-container:hover .PokeCard-img {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.card-body {
+  padding: 1.25rem 0.5rem !important;
+}
