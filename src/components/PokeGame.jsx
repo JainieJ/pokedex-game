@@ -5,39 +5,32 @@ import "./PokeGame.css";
 class PokeGame extends Component {
   state = {};
   getRandomSet = arr => {
-    const middle = Math.floor(arr.length / 2);
-    // dividing the arr into two unique arrs with random pokemons
+    //getting random sets of pokemons
     let firstArray = [];
-    while (firstArray.length < middle) {
-      const index = Math.floor(Math.random() * arr.length);
-      if (!firstArray.includes(arr[index])) {
-        firstArray.push(arr[index]);
-      }
+    let secondArray = [...arr];
+    while (firstArray.length < secondArray.length) {
+      const index = Math.floor(Math.random() * secondArray.length);
+      const randomPokemon = secondArray.splice(index, 1)[0];
+      firstArray.push(randomPokemon);
     }
-    const secondArray = arr.filter(item => {
-      if (!firstArray.includes(item)) {
-        return item;
-      }
-    });
     //claculating total experience for each array
     const totalFirst = this.getTotalExperience(firstArray);
     const totalSecond = this.getTotalExperience(secondArray);
     //returning components with info on who is the winner
-    if (totalFirst > totalSecond) {
-      return (
-        <>
-          <Pokedex list={firstArray} total={totalFirst} isWinner />
-          <Pokedex list={secondArray} total={totalSecond} />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <Pokedex list={firstArray} total={totalFirst} />
-          <Pokedex list={secondArray} total={totalSecond} isWinner />
-        </>
-      );
-    }
+    return (
+      <>
+        <Pokedex
+          list={firstArray}
+          total={totalFirst}
+          isWinner={totalFirst > totalSecond}
+        />
+        <Pokedex
+          list={secondArray}
+          total={totalSecond}
+          isWinner={totalSecond > totalFirst}
+        />
+      </>
+    );
   };
   getTotalExperience = arr => {
     const total = arr.reduce((acc, current) => {

@@ -18,13 +18,16 @@ class Pokedex extends Component {
   };
   render() {
     const { list, total, isWinner } = this.props;
-    const winner = isWinner ? "winner" : "loser";
+    let title;
+    if (isWinner) {
+      title = <h3 className="winner">winning hand</h3>;
+    } else {
+      title = <h3 className="loser">losing hand</h3>;
+    }
     return (
       <div className="row">
         <div className="col-10 mx-auto text-center py-3 text-capitalize Pokedex-set">
-          <h3 className={winner}>
-            {isWinner ? "winning hand" : "losing hand"}
-          </h3>
+          {title}
           <p>total experience: {total}</p>
         </div>
         {list.map(pokemon => (
