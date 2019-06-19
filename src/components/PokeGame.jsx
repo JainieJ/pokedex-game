@@ -59,7 +59,7 @@ class PokeGame extends Component {
     ];
     return (
       <section>
-        <div className="container-fluid" className="PokeGame">
+        <div className="container-fluid PokeGame">
           {this.getRandomSet(list)}
         </div>
       </section>
